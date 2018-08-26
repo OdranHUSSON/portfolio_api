@@ -56,7 +56,7 @@ class Portfolio extends Migration
             $table->foreign('cryptocurrencys_id')->references('id')->on('cryptocurrencys');
             $table->integer('portfolios_id')->unsigned();
             $table->foreign('portfolios_id')->references('id')->on('portfolios');
-            $table->float('quantity');
+            $table->float('quantity',32,8);
             $table->timestamps();
         });
 
