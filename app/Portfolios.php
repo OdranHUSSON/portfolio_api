@@ -16,6 +16,6 @@ class Portfolios extends Model
     protected $table = "portfolios";
 
     public function portfolios_cryptocurrencys() {
-        return $this->hasMany("App\portfolios_cryptocurrencys","portfolios_id");
+        return $this->hasMany("App\Portfolios_cryptocurrencys","portfolios_id");
     }
 }

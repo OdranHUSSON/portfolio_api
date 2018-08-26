@@ -20,6 +20,6 @@ class Portfolios_cryptocurrencys
     }
 
     public function cryptocurrencys() {
-        return $this->belongsTo('App\cryptocurrencys');
+        return $this->belongsTo('App\Cryptocurrencys');
     }
 }

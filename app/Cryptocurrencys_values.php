@@ -15,6 +15,6 @@ class Cryptocurrencys_values extends Model
     protected $table = "cryptocurrencys_values";
 
     public function cryptocurrencys() {
-        return $this->belongsTo('App\cryptocurrencys');
+        return $this->belongsTo('App\Cryptocurrencys');
     }
 }
