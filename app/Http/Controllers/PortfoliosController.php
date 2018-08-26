@@ -18,11 +18,15 @@ class PortfoliosController extends Controller
 
         $data = [
             "error" => false,
-            "data" => $portfolio,
+            "name" => $portfolio->name,
+            "description" => $portfolio->description
         ];
 
         foreach($portfolio->portfolios_cryptocurrencys as $cryptocurrency) {
-            $data['cryptocurrencys'][$cryptocurrency->cryptocurrencys->symbol] = $cryptocurrency->quantity;
+            $data['cryptocurrencys'][$cryptocurrency->cryptocurrencys->symbol] = [
+                "quantity" => $cryptocurrency->quantity,
+                "ChartDataWeekly" => $cryptocurrency->ChartWeeklyData()
+            ];
         }
         return response()->json($data);
     }

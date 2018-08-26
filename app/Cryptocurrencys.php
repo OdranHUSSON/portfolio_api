@@ -21,6 +21,6 @@ class Cryptocurrencys extends Model
     }
 
     public function Cryptocurrencys_values() {
-        return $this->hasMany('App\Cryptocurrencys_values','cryptocurrencys_id');
+        return $this->hasMany('App\Cryptocurrencys_values','cryptocurrencys_id')->latest();
     }
 }
