@@ -25,6 +25,7 @@ class PortfoliosController extends Controller
         foreach($portfolio->portfolios_cryptocurrencys as $cryptocurrency) {
             $data['cryptocurrencys'][$cryptocurrency->cryptocurrencys->symbol] = [
                 "quantity" => $cryptocurrency->quantity,
+                "currentValue" => $cryptocurrency->currentValue(),
                 "ChartDataWeekly" => $cryptocurrency->ChartWeeklyData()
             ];
         }

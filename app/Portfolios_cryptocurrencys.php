@@ -41,7 +41,7 @@ class Portfolios_cryptocurrencys extends Model
      */
     public function ChartWeeklyData() {
         $quantity = 1 * 24 * 7;
-        return $this->GetValues($quantity);
+        return array_reverse($this->GetValues($quantity));
     }
 
     /**

@@ -21,6 +21,6 @@ class Cryptocurrencys extends Model
     }
 
     public function Cryptocurrencys_values() {
-        return $this->hasMany('App\Cryptocurrencys_values','cryptocurrencys_id')->orderBy("created_at","ASC")->latest();
+        return $this->hasMany('App\Cryptocurrencys_values','cryptocurrencys_id')->orderBy("created_at","DESC")->latest();
     }
 }
