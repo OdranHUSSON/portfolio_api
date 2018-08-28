@@ -33,7 +33,7 @@ class Portfolios_cryptocurrencys extends Model
      * @return array
      */
     public function CurrentValue() {
-        return $this->GetValues(1);
+        return $this->GetValues(1)[0];
     }
 
     /**
