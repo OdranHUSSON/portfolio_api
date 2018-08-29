@@ -13,8 +13,13 @@ use Illuminate\Http\Request;
 
 class PortfoliosController extends Controller
 {
-    public function get(Request $request,$id) {
-        $portfolio = Portfolios::all()->find($id);
+
+    /**
+     * @param $portfolioid
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function get($portfolioid) {
+        $portfolio = Portfolios::all()->find($portfolioid);
 
         $data = [
             "error" => false,
@@ -22,14 +27,31 @@ class PortfoliosController extends Controller
             "description" => $portfolio->description
         ];
 
+        $data['cryptocurrencys'] = [];
         foreach($portfolio->portfolios_cryptocurrencys as $cryptocurrency) {
-            $data['cryptocurrencys'][$cryptocurrency->cryptocurrencys->symbol] = [
-                "quantity" => $cryptocurrency->quantity,
-                "currentValue" => $cryptocurrency->currentValue(),
-                "ChartDataWeekly" => $cryptocurrency->ChartWeeklyData()
-            ];
+            $data['cryptocurrencys'][$cryptocurrency->cryptocurrencys->symbol] = $cryptocurrency->quantity;
         }
+
         return response()->json($data);
+    }
+
+    /**
+     * @param $portfolioid
+     * @param $symbol
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getPortfolioCryptoCurrency($portfolioid,$symbol) {
+        $portfolio = Portfolios::all()->find($portfolioid);
+        foreach($portfolio->portfolios_cryptocurrencys as $cryptocurrency) {
+            if( $cryptocurrency->cryptocurrencys->symbol = $symbol) {
+
+                return response()->json([
+                    "owned" => $cryptocurrency->quantity,
+                    "currentValue" => $cryptocurrency->currentValue(),
+                    "ChartDataWeekly" => $cryptocurrency->ChartWeeklyData()
+                ]);
+            }
+        }
     }
 
     /**

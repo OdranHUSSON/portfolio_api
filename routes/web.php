@@ -19,7 +19,8 @@ $router->get('/', function () use ($router) {
 
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->get('portfolios/{id}', 'PortfoliosController@get');
+    $router->get('portfolios/{portfolioid}', 'PortfoliosController@get');
+    $router->get('portfolios/{portfolioid}/{symbol}', 'PortfoliosController@getPortfolioCryptoCurrency');
     $router->post('portfolios', ['uses' => 'PortfoliosController@post']);
     $router->post('portfolios/add', ['uses' => 'PortfoliosCryptocurrencysController@post']);
 
